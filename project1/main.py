@@ -33,22 +33,22 @@ algos = [
   #   "label": "Dummy",
   #   "learner": DummyClassifier(),
   # },
-  # {
-  #   "label": "Boosting",
-  #   "learner": AdaBoostClassifier(),
-  # },
-  # {
-  #   "label": "k Nearest Neighbors",
-  #   "learner": KNeighborsClassifier(n_neighbors=5),
-  # },
+  {
+    "label": "Boosting",
+    "learner": AdaBoostClassifier(),
+  },
+  {
+    "label": "k Nearest Neighbors",
+    "learner": KNeighborsClassifier(n_neighbors=5),
+  },
   {
     "label": "Decision Tree",
     "learner": DecisionTreeClassifier(),
   },
-  # {
-  #   "label": "Neural Network",
-  #   "learner": MLPClassifier(),
-  # },
+  {
+    "label": "Neural Network",
+    "learner": MLPClassifier(),
+  },
   # {
   #   "label": "SVM",
   #   "learner": SVC(kernel='linear', tol=1),
@@ -56,8 +56,8 @@ algos = [
 ]
 
 rows = []
-for i in range(0, 30, 1):
-  rows.append(1000 * (1 + i))
+for i in range(0, 9, 1):
+  rows.append(5000 * (1 + i))
 
 count = 0
 max = len(algos)
@@ -71,6 +71,7 @@ for algo in algos:
   cross_val_errors = []
 
   for total_rows in rows:
+    print(total_rows)
     # used to get a subset of the data of size total_rows
     sss1 = StratifiedShuffleSplit(n_splits=1, test_size=(total_rows/x.shape[0]))
     for train_index, test_index in sss1.split(x, y):
@@ -97,7 +98,7 @@ for algo in algos:
   #endfor
 
   count += 1
-  plt = fig.add_subplot(math.ceil(max / 2), 1, count)
+  plt = fig.add_subplot(math.ceil(max / 2), 2, count)
   plt.set_title(algo["label"])
   plt.set_xlabel("Instances")
   plt.set_ylabel("Error")
