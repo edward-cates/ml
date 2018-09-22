@@ -1,3 +1,4 @@
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB
@@ -5,6 +6,39 @@ from sklearn.svm import SVC
 from sklearn.datasets import load_digits
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import ShuffleSplit
+
+from util.data import get_data
+
+def graph_feature(path, xs, rows, get_learner):
+
+  error = []
+
+  step = math.ceil((xs[1] - xs[0]) / 10)
+  xs = range(xs[0], xs[1], step)
+
+  for n in xs:
+    learner = get_learner(n)
+
+    train_x, test_x, train_y, test_y = get_data(rows)
+
+    learner.fit(train_x, train_y)
+    train_score = learner.score(train_x, train_y)
+    test_score = learner.score(test_x, test_y)
+
+    error.append([
+      1 - train_score,
+      1 - test_score,
+    ])
+  #endfor
+
+  filename = "graphs/{}.png".format(path)
+  print(filename)
+
+  fig = plt.figure()
+  plt.plot(xs, error)
+  plt.ylim(0, 1)
+  fig.savefig(filename)
+#enddef
 
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
                         n_jobs=1, train_sizes=np.linspace(.1, 1.0, 5)):
