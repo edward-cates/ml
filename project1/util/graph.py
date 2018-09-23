@@ -32,10 +32,9 @@ def graph_feature(path, xs, learners):
         #endfor
 
         name = learner["name"]
-        style = learner["style"]
 
-        plt.plot(xs, train_error, style, label="{} Train".format(name))
-        plt.plot(xs, test_error, style, label="{} Test".format(name))
+        plt.plot(xs, train_error, ".--", label="{} Train".format(name))
+        plt.plot(xs, test_error, ".-", label="{} Test".format(name))
     #endfor
 
     filename = "graphs/{}.png".format(path)
