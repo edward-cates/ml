@@ -6,7 +6,6 @@ import pandas as pd
 
 from sklearn.dummy import DummyClassifier
 from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.model_selection import cross_val_score
 from sklearn.utils import resample
 
 from util.graph import plot_learning_curve
@@ -19,10 +18,10 @@ from learners.boosting import test_boosting
 
 matplotlib.rcParams.update({'font.size': 6})
 
-print('=============')
-print('decision tree')
-print('-------------')
-test_decision_tree()
+# print('=============')
+# print('decision tree')
+# print('-------------')
+# test_decision_tree()
 
 # print('===')
 # print('kNN')
@@ -39,10 +38,10 @@ test_decision_tree()
 # print('---')
 # test_svm()
 
-# print('========')
-# print('boosting')
-# print('--------')
-# test_boosting()
+print('========')
+print('boosting')
+print('--------')
+test_boosting()
 
 # up-sample (https://elitedatascience.com/imbalanced-classes)
 # y = data.ix[:, -1]

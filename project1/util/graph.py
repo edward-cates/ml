@@ -1,6 +1,8 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import confusion_matrix
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.datasets import load_digits
@@ -26,9 +28,11 @@ def graph_feature(path, xs, learners):
             l.fit(train_x, train_y)
             train_score = l.score(train_x, train_y)
             test_score = l.score(test_x, test_y)
+            cv_score = cross_val_score(l, train_x, train_y, cv=10).mean()
 
             train_error.append(1 - train_score)
-            test_error.append(1 - test_score)
+            # test_error.append(1 - test_score)
+            test_error.append(1 - cv_score)
         #endfor
 
         name = learner["name"]
@@ -40,6 +44,7 @@ def graph_feature(path, xs, learners):
     filename = "graphs/{}.png".format(path)
     print(filename)
 
+    plt.title(path)
     plt.xlabel("Instances")
     plt.ylabel("Error")
     plt.ylim(0, 1)
