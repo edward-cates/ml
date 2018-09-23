@@ -9,35 +9,43 @@ from sklearn.model_selection import ShuffleSplit
 
 from util.data import get_data
 
-def graph_feature(path, xs, rows, get_learner):
+def graph_feature(path, xs, learners):
+    step = math.ceil((xs[1] - xs[0]) / 10)
+    xs = range(xs[0], xs[1], step)
 
-  error = []
+    fig = plt.figure()
 
-  step = math.ceil((xs[1] - xs[0]) / 10)
-  xs = range(xs[0], xs[1], step)
+    for learner in learners:
+        train_error = []
+        test_error = []
 
-  for n in xs:
-    learner = get_learner(n)
+        for n in xs:
+            train_x, test_x, train_y, test_y = get_data(n)
 
-    train_x, test_x, train_y, test_y = get_data(rows)
+            l = learner["learner"]
+            l.fit(train_x, train_y)
+            train_score = l.score(train_x, train_y)
+            test_score = l.score(test_x, test_y)
 
-    learner.fit(train_x, train_y)
-    train_score = learner.score(train_x, train_y)
-    test_score = learner.score(test_x, test_y)
+            train_error.append(1 - train_score)
+            test_error.append(1 - test_score)
+        #endfor
 
-    error.append([
-      1 - train_score,
-      1 - test_score,
-    ])
-  #endfor
+        name = learner["name"]
+        style = learner["style"]
 
-  filename = "graphs/{}.png".format(path)
-  print(filename)
+        plt.plot(xs, train_error, style, label="{} Train".format(name))
+        plt.plot(xs, test_error, style, label="{} Test".format(name))
+    #endfor
 
-  fig = plt.figure()
-  plt.plot(xs, error)
-  plt.ylim(0, 1)
-  fig.savefig(filename)
+    filename = "graphs/{}.png".format(path)
+    print(filename)
+
+    plt.xlabel("Instances")
+    plt.ylabel("Error")
+    plt.ylim(0, 1)
+    plt.legend()
+    fig.savefig(filename)
 #enddef
 
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
