@@ -1,114 +1,81 @@
 Randomized Hill Climbing
-25000 iterations: 16607.094613593876 (31ms)
-50000 iterations: 15912.87057861083 (28ms)
-75000 iterations: 16288.670682636603 (38ms)
-100000 iterations: 16399.69409722326 (51ms)
-125000 iterations: 16624.188750461803 (46ms)
-150000 iterations: 16794.024273209525 (117ms)
-175000 iterations: 16094.830826537242 (72ms)
-200000 iterations: 16174.065405022488 (118ms)
-225000 iterations: 16603.633960262163 (106ms)
-250000 iterations: 16469.468814768064 (138ms)
+25000 iterations: 15872.82916033726 (30ms)
+50000 iterations: 16164.719647064572 (24ms)
+75000 iterations: 16573.680375602537 (30ms)
+100000 iterations: 16361.119536006716 (78ms)
+125000 iterations: 15757.313959055755 (97ms)
+150000 iterations: 15764.42518552681 (104ms)
+175000 iterations: 16403.353767534078 (69ms)
+200000 iterations: 15815.011701172833 (109ms)
+225000 iterations: 15793.823421986175 (113ms)
+250000 iterations: 15870.835006950776 (132ms)
 Simulated Annealing
-initial temp: 100000.000000, cooling: 0.900000, value: 15765.642787210782
-initial temp: 100000.000000, cooling: 0.950000, value: 16871.16387126387
-initial temp: 100000.000000, cooling: 0.990000, value: 17199.013096583214
-initial temp: 100000.000000, cooling: 0.999000, value: 18945.79942557418
-initial temp: 100000000.000000, cooling: 0.900000, value: 16749.34902354904
-initial temp: 100000000.000000, cooling: 0.950000, value: 16653.783383096845
-initial temp: 100000000.000000, cooling: 0.990000, value: 16956.588438861374
-initial temp: 100000000.000000, cooling: 0.999000, value: 19146.1968761266
-initial temp: 10000000000.000000, cooling: 0.900000, value: 16517.622650988957
-initial temp: 10000000000.000000, cooling: 0.950000, value: 16828.746735679888
-initial temp: 10000000000.000000, cooling: 0.990000, value: 17059.604224072205
-initial temp: 10000000000.000000, cooling: 0.999000, value: 19024.18347532704
-initial temp: 1000000000000.000000, cooling: 0.900000, value: 16184.891069534837
-initial temp: 1000000000000.000000, cooling: 0.950000, value: 16588.354511031117
-initial temp: 1000000000000.000000, cooling: 0.990000, value: 16577.959057205477
-initial temp: 1000000000000.000000, cooling: 0.999000, value: 18775.919646962342
-initial temp: 1000000000000000.000000, cooling: 0.900000, value: 16779.091972120365
-initial temp: 1000000000000000.000000, cooling: 0.950000, value: 17078.145555659557
-initial temp: 1000000000000000.000000, cooling: 0.990000, value: 16374.654812124763
-initial temp: 1000000000000000.000000, cooling: 0.999000, value: 19016.268661052043
-best temp: 100000000.000000, cooling: 0.999000
-25000 iterations: 19097.536203049174 (15ms)
-50000 iterations: 19067.420014390194 (32ms)
-75000 iterations: 18919.330641369983 (52ms)
-100000 iterations: 19054.375412060213 (75ms)
-125000 iterations: 18935.90261926229 (96ms)
-150000 iterations: 18850.2617754104 (119ms)
-175000 iterations: 18734.950729457676 (137ms)
-200000 iterations: 19033.432748971853 (163ms)
-225000 iterations: 19116.05066719112 (155ms)
-250000 iterations: 18878.61962364629 (154ms)
+initial temp: 100000.000000, cooling: 0.900000, value: 16158.11781605419
+initial temp: 100000.000000, cooling: 0.950000, value: 16128.368858909042
+initial temp: 100000.000000, cooling: 0.990000, value: 16827.494923209
+initial temp: 100000.000000, cooling: 0.999000, value: 18272.144485463967
+initial temp: 100000.000000, cooling: 0.999900, value: 19003.467688244447
+initial temp: 100000000.000000, cooling: 0.900000, value: 16083.240286081922
+initial temp: 100000000.000000, cooling: 0.950000, value: 15940.032202683604
+initial temp: 100000000.000000, cooling: 0.990000, value: 16264.549758085108
+initial temp: 100000000.000000, cooling: 0.999000, value: 18160.8952451656
+initial temp: 100000000.000000, cooling: 0.999900, value: 19006.811860738937
+initial temp: 10000000000.000000, cooling: 0.900000, value: 16303.975754458794
+initial temp: 10000000000.000000, cooling: 0.950000, value: 15940.715209586942
+initial temp: 10000000000.000000, cooling: 0.990000, value: 16103.27117334341
+initial temp: 10000000000.000000, cooling: 0.999000, value: 18273.744294447963
+initial temp: 10000000000.000000, cooling: 0.999900, value: 17615.48367381407
+initial temp: 1000000000000.000000, cooling: 0.900000, value: 15979.16494010812
+initial temp: 1000000000000.000000, cooling: 0.950000, value: 16647.71533011248
+initial temp: 1000000000000.000000, cooling: 0.990000, value: 16535.54478497232
+initial temp: 1000000000000.000000, cooling: 0.999000, value: 18204.92823419486
+initial temp: 1000000000000.000000, cooling: 0.999900, value: 10438.008822864565
+initial temp: 1000000000000000.000000, cooling: 0.900000, value: 15953.944732575172
+initial temp: 1000000000000000.000000, cooling: 0.950000, value: 16442.857593249075
+initial temp: 1000000000000000.000000, cooling: 0.990000, value: 16413.522447633248
+initial temp: 1000000000000000.000000, cooling: 0.999000, value: 18009.79299664468
+initial temp: 1000000000000000.000000, cooling: 0.999900, value: 9015.366219526539
+best temp: 100000000.000000, cooling: 0.999900
+25000 iterations: 9105.091099701865 (13ms)
+50000 iterations: 10900.554458252333 (21ms)
+75000 iterations: 10648.01779862942 (31ms)
+100000 iterations: 9602.039056688363 (46ms)
+125000 iterations: 11017.658132823426 (58ms)
+150000 iterations: 16485.629555856864 (59ms)
+175000 iterations: 18972.152586487784 (82ms)
+200000 iterations: 18989.20764892699 (90ms)
+225000 iterations: 19054.097337459745 (108ms)
+250000 iterations: 18994.265290338983 (117ms)
 Genetic Algorithm
-population: 150, mates: 50, mutations: 10, value: 14897.684299302244
-population: 150, mates: 50, mutations: 20, value: 14805.980898804182
-population: 150, mates: 50, mutations: 30, value: 14329.374931758988
-population: 150, mates: 100, mutations: 10, value: 15207.651755093655
-population: 150, mates: 100, mutations: 20, value: 15338.06018673856
-population: 150, mates: 100, mutations: 30, value: 14691.149753879505
-population: 150, mates: 150, mutations: 10, value: 14894.098980504517
-population: 150, mates: 150, mutations: 20, value: 15132.913676521064
-population: 150, mates: 150, mutations: 30, value: 15670.374613647069
-population: 200, mates: 50, mutations: 10, value: 15750.773537275862
-population: 200, mates: 50, mutations: 20, value: 15779.101353816199
-population: 200, mates: 50, mutations: 30, value: 15286.248205203232
-population: 200, mates: 100, mutations: 10, value: 14747.057576242094
-population: 200, mates: 100, mutations: 20, value: 15423.389671302888
-population: 200, mates: 100, mutations: 30, value: 16077.905157642283
-population: 200, mates: 150, mutations: 10, value: 16044.235130468856
-population: 200, mates: 150, mutations: 20, value: 15981.886690861986
-population: 200, mates: 150, mutations: 30, value: 15668.22577842991
-population: 250, mates: 50, mutations: 10, value: 15858.672929218184
-population: 250, mates: 50, mutations: 20, value: 16206.648958701024
-population: 250, mates: 50, mutations: 30, value: 16141.936351346234
-population: 250, mates: 100, mutations: 10, value: 16599.99928273924
-population: 250, mates: 100, mutations: 20, value: 15643.50123530479
-population: 250, mates: 100, mutations: 30, value: 17011.83792741468
-population: 250, mates: 150, mutations: 10, value: 16281.05225408945
-population: 250, mates: 150, mutations: 20, value: 16257.863219915194
-population: 250, mates: 150, mutations: 30, value: 16485.11165283612
-best population: 250, mates: 100, mutations: 30
-500 iterations: 15520.348164119574 (159ms)
-1000 iterations: 16118.448075272565 (306ms)
-1500 iterations: 16178.694140070453 (448ms)
-2000 iterations: 17348.545902813214 (611ms)
-2500 iterations: 17207.655352563088 (803ms)
-3000 iterations: 16581.83098466244 (879ms)
-3500 iterations: 17009.0248946387 (1075ms)
-4000 iterations: 16789.424560986394 (1253ms)
-4500 iterations: 17401.818163861735 (1378ms)
-5000 iterations: 17508.923423967542 (1532ms)
-MIMIC
-samples: 100, toKeep: 2, value: 15346.149297146063
-samples: 100, toKeep: 4, value: 18749.018557449286
-samples: 100, toKeep: 8, value: 19039.011748144512
-samples: 100, toKeep: 16, value: 18760.329294406853
-samples: 150, toKeep: 2, value: 15726.339805063406
-samples: 150, toKeep: 4, value: 18861.827399060337
-samples: 150, toKeep: 8, value: 19118.825585398125
-samples: 150, toKeep: 16, value: 19169.86210971592
-samples: 200, toKeep: 2, value: 16812.18830709895
-samples: 200, toKeep: 4, value: 19253.305462128068
-samples: 200, toKeep: 8, value: 19487.62719844465
-samples: 200, toKeep: 16, value: 19240.985726512146
-samples: 250, toKeep: 2, value: 16292.476555404748
-samples: 250, toKeep: 4, value: 19405.120401969583
-samples: 250, toKeep: 8, value: 19418.347302875925
-samples: 250, toKeep: 16, value: 18947.85039521861
-samples: 300, toKeep: 2, value: 16997.861804355318
-samples: 300, toKeep: 4, value: 19378.151468849228
-samples: 300, toKeep: 8, value: 19370.72798834476
-samples: 300, toKeep: 16, value: 19500.46885496558
-best samples: 300, toKeep: 16
-250 iterations: 19338.24904364616 (3539ms)
-500 iterations: 19165.276242250922 (6833ms)
-750 iterations: 19569.98037489674 (10721ms)
-1000 iterations: 19611.831435202843 (14434ms)
-1250 iterations: 19724.981068279165 (16934ms)
-1500 iterations: 19651.31374450372 (20211ms)
-1750 iterations: 19751.224246414782 (23280ms)
-2000 iterations: 19797.982386662028 (26555ms)
-2250 iterations: 19775.12589993568 (29850ms)
-2500 iterations: 19671.463476142875 (33532ms)
+population: 150, mates: 50, mutations: 10, value: 14104.981848867585
+population: 150, mates: 50, mutations: 20, value: 14442.786860721395
+population: 150, mates: 50, mutations: 30, value: 14487.058961767902
+population: 150, mates: 100, mutations: 10, value: 14148.108059416885
+population: 150, mates: 100, mutations: 20, value: 14668.856937469249
+population: 150, mates: 100, mutations: 30, value: 13961.401892271168
+population: 150, mates: 150, mutations: 10, value: 14145.690614024632
+population: 150, mates: 150, mutations: 20, value: 14262.842096842058
+population: 150, mates: 150, mutations: 30, value: 14263.173391620632
+population: 200, mates: 50, mutations: 10, value: 14194.559045802387
+population: 200, mates: 50, mutations: 20, value: 15356.254385906817
+population: 200, mates: 50, mutations: 30, value: 14377.778229010606
+population: 200, mates: 100, mutations: 10, value: 14990.536952888526
+population: 200, mates: 100, mutations: 20, value: 14932.880346595497
+population: 200, mates: 100, mutations: 30, value: 15217.198146324667
+population: 200, mates: 150, mutations: 10, value: 14651.593120971145
+population: 200, mates: 150, mutations: 20, value: 14659.065656500632
+population: 200, mates: 150, mutations: 30, value: 14698.59277820506
+population: 250, mates: 50, mutations: 10, value: 15221.367277082334
+population: 250, mates: 50, mutations: 20, value: 15276.06453780041
+population: 250, mates: 50, mutations: 30, value: 14757.805819003743
+population: 250, mates: 100, mutations: 10, value: 14980.887867287616
+population: 250, mates: 100, mutations: 20, value: 15340.68505355198
+population: 250, mates: 100, mutations: 30, value: 15682.059346698672
+population: 250, mates: 150, mutations: 10, value: 15924.811104857354
+population: 250, mates: 150, mutations: 20, value: 15589.812195132945
+population: 250, mates: 150, mutations: 30, value: 15300.705692718926
+best population: 250, mates: 150, mutations: 10
+5000 iterations: 15628.6186204602 (2323ms)
+10000 iterations: 15706.1391268594 (4712ms)
+15000 iterations: 17228.73193516623 (6411ms)
+20000 iterations: 16443.09448879843 (8704ms)

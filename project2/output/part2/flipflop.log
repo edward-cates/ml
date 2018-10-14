@@ -1,21 +1,21 @@
 Randomized Hill Climbing
-25000 iterations: 64.0 (23ms)
-50000 iterations: 65.0 (18ms)
-75000 iterations: 64.0 (15ms)
-100000 iterations: 66.0 (12ms)
-125000 iterations: 68.0 (31ms)
-150000 iterations: 63.0 (18ms)
-175000 iterations: 64.0 (44ms)
-200000 iterations: 63.0 (70ms)
-225000 iterations: 64.0 (42ms)
-250000 iterations: 66.0 (36ms)
+25000 iterations: 65.0 (16ms)
+50000 iterations: 62.0 (15ms)
+75000 iterations: 66.0 (13ms)
+100000 iterations: 63.0 (13ms)
+125000 iterations: 60.0 (15ms)
+150000 iterations: 60.0 (28ms)
+175000 iterations: 71.0 (26ms)
+200000 iterations: 63.0 (24ms)
+225000 iterations: 72.0 (60ms)
+250000 iterations: 59.0 (27ms)
 Simulated Annealing
 initial temp: 100000.000000, cooling: 0.900000, value: 79.0
 initial temp: 100000.000000, cooling: 0.950000, value: 79.0
 initial temp: 100000.000000, cooling: 0.990000, value: 79.0
-initial temp: 100000.000000, cooling: 0.999000, value: 78.0
+initial temp: 100000.000000, cooling: 0.999000, value: 79.0
 initial temp: 100000000.000000, cooling: 0.900000, value: 79.0
-initial temp: 100000000.000000, cooling: 0.950000, value: 79.0
+initial temp: 100000000.000000, cooling: 0.950000, value: 78.0
 initial temp: 100000000.000000, cooling: 0.990000, value: 79.0
 initial temp: 100000000.000000, cooling: 0.999000, value: 79.0
 initial temp: 10000000000.000000, cooling: 0.900000, value: 79.0
@@ -29,86 +29,86 @@ initial temp: 1000000000000.000000, cooling: 0.999000, value: 79.0
 initial temp: 1000000000000000.000000, cooling: 0.900000, value: 79.0
 initial temp: 1000000000000000.000000, cooling: 0.950000, value: 79.0
 initial temp: 1000000000000000.000000, cooling: 0.990000, value: 78.0
-initial temp: 1000000000000000.000000, cooling: 0.999000, value: 78.0
+initial temp: 1000000000000000.000000, cooling: 0.999000, value: 79.0
 best temp: 100000.000000, cooling: 0.900000
-25000 iterations: 79.0 (14ms)
-50000 iterations: 78.0 (29ms)
-75000 iterations: 79.0 (43ms)
-100000 iterations: 78.0 (54ms)
-125000 iterations: 79.0 (74ms)
-150000 iterations: 79.0 (87ms)
-175000 iterations: 79.0 (100ms)
-200000 iterations: 79.0 (115ms)
-225000 iterations: 79.0 (127ms)
-250000 iterations: 79.0 (146ms)
+25000 iterations: 78.0 (13ms)
+50000 iterations: 78.0 (26ms)
+75000 iterations: 79.0 (40ms)
+100000 iterations: 79.0 (55ms)
+125000 iterations: 79.0 (69ms)
+150000 iterations: 79.0 (83ms)
+175000 iterations: 79.0 (95ms)
+200000 iterations: 79.0 (109ms)
+225000 iterations: 79.0 (124ms)
+250000 iterations: 79.0 (141ms)
 Genetic Algorithm
 population: 150, mates: 50, mutations: 10, value: 68.0
-population: 150, mates: 50, mutations: 20, value: 69.0
-population: 150, mates: 50, mutations: 30, value: 73.0
-population: 150, mates: 100, mutations: 10, value: 71.0
-population: 150, mates: 100, mutations: 20, value: 68.0
-population: 150, mates: 100, mutations: 30, value: 67.0
-population: 150, mates: 150, mutations: 10, value: 68.0
-population: 150, mates: 150, mutations: 20, value: 73.0
-population: 150, mates: 150, mutations: 30, value: 71.0
-population: 200, mates: 50, mutations: 10, value: 70.0
-population: 200, mates: 50, mutations: 20, value: 72.0
-population: 200, mates: 50, mutations: 30, value: 70.0
-population: 200, mates: 100, mutations: 10, value: 72.0
+population: 150, mates: 50, mutations: 20, value: 70.0
+population: 150, mates: 50, mutations: 30, value: 69.0
+population: 150, mates: 100, mutations: 10, value: 68.0
+population: 150, mates: 100, mutations: 20, value: 69.0
+population: 150, mates: 100, mutations: 30, value: 75.0
+population: 150, mates: 150, mutations: 10, value: 70.0
+population: 150, mates: 150, mutations: 20, value: 70.0
+population: 150, mates: 150, mutations: 30, value: 72.0
+population: 200, mates: 50, mutations: 10, value: 68.0
+population: 200, mates: 50, mutations: 20, value: 71.0
+population: 200, mates: 50, mutations: 30, value: 68.0
+population: 200, mates: 100, mutations: 10, value: 73.0
 population: 200, mates: 100, mutations: 20, value: 73.0
-population: 200, mates: 100, mutations: 30, value: 73.0
-population: 200, mates: 150, mutations: 10, value: 70.0
-population: 200, mates: 150, mutations: 20, value: 69.0
-population: 200, mates: 150, mutations: 30, value: 74.0
-population: 250, mates: 50, mutations: 10, value: 68.0
-population: 250, mates: 50, mutations: 20, value: 72.0
-population: 250, mates: 50, mutations: 30, value: 72.0
-population: 250, mates: 100, mutations: 10, value: 70.0
-population: 250, mates: 100, mutations: 20, value: 73.0
-population: 250, mates: 100, mutations: 30, value: 72.0
-population: 250, mates: 150, mutations: 10, value: 69.0
-population: 250, mates: 150, mutations: 20, value: 75.0
-population: 250, mates: 150, mutations: 30, value: 73.0
-best population: 250, mates: 150, mutations: 20
-5000 iterations: 75.0 (400ms)
-10000 iterations: 75.0 (761ms)
-15000 iterations: 75.0 (1251ms)
-20000 iterations: 73.0 (1437ms)
-25000 iterations: 77.0 (1754ms)
-30000 iterations: 76.0 (2160ms)
-35000 iterations: 76.0 (2463ms)
-40000 iterations: 74.0 (3254ms)
-45000 iterations: 78.0 (3589ms)
-50000 iterations: 77.0 (3959ms)
+population: 200, mates: 100, mutations: 30, value: 75.0
+population: 200, mates: 150, mutations: 10, value: 68.0
+population: 200, mates: 150, mutations: 20, value: 72.0
+population: 200, mates: 150, mutations: 30, value: 70.0
+population: 250, mates: 50, mutations: 10, value: 67.0
+population: 250, mates: 50, mutations: 20, value: 73.0
+population: 250, mates: 50, mutations: 30, value: 67.0
+population: 250, mates: 100, mutations: 10, value: 67.0
+population: 250, mates: 100, mutations: 20, value: 72.0
+population: 250, mates: 100, mutations: 30, value: 70.0
+population: 250, mates: 150, mutations: 10, value: 70.0
+population: 250, mates: 150, mutations: 20, value: 69.0
+population: 250, mates: 150, mutations: 30, value: 71.0
+best population: 150, mates: 100, mutations: 30
+50000 iterations: 75.0 (2173ms)
+100000 iterations: 72.0 (4397ms)
+150000 iterations: 75.0 (6593ms)
+200000 iterations: 74.0 (8765ms)
+250000 iterations: 73.0 (10966ms)
+300000 iterations: 76.0 (13184ms)
+350000 iterations: 75.0 (15384ms)
+400000 iterations: 72.0 (17550ms)
+450000 iterations: 74.0 (19784ms)
+500000 iterations: 76.0 (23726ms)
 MIMIC
-samples: 100, toKeep: 2, value: 72.0
-samples: 100, toKeep: 4, value: 73.0
-samples: 100, toKeep: 8, value: 69.0
-samples: 100, toKeep: 16, value: 72.0
-samples: 150, toKeep: 2, value: 74.0
-samples: 150, toKeep: 4, value: 67.0
-samples: 150, toKeep: 8, value: 69.0
-samples: 150, toKeep: 16, value: 72.0
+samples: 100, toKeep: 2, value: 74.0
+samples: 100, toKeep: 4, value: 69.0
+samples: 100, toKeep: 8, value: 74.0
+samples: 100, toKeep: 16, value: 66.0
+samples: 150, toKeep: 2, value: 71.0
+samples: 150, toKeep: 4, value: 74.0
+samples: 150, toKeep: 8, value: 70.0
+samples: 150, toKeep: 16, value: 68.0
 samples: 200, toKeep: 2, value: 72.0
-samples: 200, toKeep: 4, value: 71.0
-samples: 200, toKeep: 8, value: 72.0
-samples: 200, toKeep: 16, value: 64.0
+samples: 200, toKeep: 4, value: 75.0
+samples: 200, toKeep: 8, value: 73.0
+samples: 200, toKeep: 16, value: 70.0
 samples: 250, toKeep: 2, value: 73.0
-samples: 250, toKeep: 4, value: 75.0
-samples: 250, toKeep: 8, value: 73.0
-samples: 250, toKeep: 16, value: 69.0
-samples: 300, toKeep: 2, value: 73.0
-samples: 300, toKeep: 4, value: 77.0
-samples: 300, toKeep: 8, value: 68.0
-samples: 300, toKeep: 16, value: 65.0
-best samples: 300, toKeep: 4
-250 iterations: 74.0 (610ms)
-500 iterations: 76.0 (1293ms)
-750 iterations: 75.0 (1928ms)
-1000 iterations: 75.0 (2624ms)
-1250 iterations: 76.0 (3175ms)
-1500 iterations: 74.0 (3550ms)
-1750 iterations: 77.0 (4184ms)
-2000 iterations: 77.0 (4594ms)
-2250 iterations: 78.0 (5121ms)
-2500 iterations: 74.0 (5705ms)
+samples: 250, toKeep: 4, value: 73.0
+samples: 250, toKeep: 8, value: 71.0
+samples: 250, toKeep: 16, value: 68.0
+samples: 300, toKeep: 2, value: 76.0
+samples: 300, toKeep: 4, value: 74.0
+samples: 300, toKeep: 8, value: 72.0
+samples: 300, toKeep: 16, value: 72.0
+best samples: 300, toKeep: 2
+250 iterations: 75.0 (621ms)
+500 iterations: 73.0 (1188ms)
+750 iterations: 75.0 (1788ms)
+1000 iterations: 77.0 (2253ms)
+1250 iterations: 75.0 (2843ms)
+1500 iterations: 78.0 (3378ms)
+1750 iterations: 76.0 (3936ms)
+2000 iterations: 78.0 (4508ms)
+2250 iterations: 79.0 (5052ms)
+2500 iterations: 78.0 (5647ms)

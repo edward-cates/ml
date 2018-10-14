@@ -117,7 +117,7 @@ public class KnapsackTest {
         System.out.println("Simulated Annealing");
         // initial temp, cooling
         double[] temps = {1e5, 1E8, 1E10, 1E12, 1E15};
-        double[] coolingRates = {0.9, 0.95, 0.99, 0.999};
+        double[] coolingRates = {0.9, 0.95, 0.99, 0.999, 0.9999};
         double[] maxCombo = {0, 0, 0};
         for (int i = 0; i < temps.length; ++i) {
             for (int j = 0; j < coolingRates.length; ++j) {
@@ -180,7 +180,7 @@ public class KnapsackTest {
         int mutations = (int) maxCombo[2];
         System.out.printf("best population: %d, mates: %d, mutations: %d%n", population, mates, mutations);
         for (int i = 0; i < 10; ++i) {
-            int iterations = 500 * (i + 1);
+            int iterations = 5000 * (i + 1);
 
             long starttime = System.currentTimeMillis();
 
