@@ -62,5 +62,5 @@ for i in range(4):
   plt.ylabel("Error")
   plt.ylim(0, 50)
   plt.legend()
-  fig.savefig('graphs/{}'.format(titles[i]))
+  fig.savefig('graphs/part1/{}'.format(titles[i]))
 #endfor
