@@ -52,12 +52,14 @@ public class FlipFlopTest {
         for (int i = 0; i < 10; ++i) {
             int iterations = 25000 * (i + 1);
 
+            long starttime = System.currentTimeMillis();
+
             RandomizedHillClimbing rhc = new RandomizedHillClimbing(hcp);
             FixedIterationTrainer fit = new FixedIterationTrainer(rhc, iterations);
             fit.train();
             double value = ef.value(rhc.getOptimal());
 
-            System.out.printf("%d iterations: %s%n", iterations, value);
+            System.out.printf("%d iterations: %s (%dms)%n", iterations, value, (System.currentTimeMillis() - starttime));
         }
         
         System.out.println("Simulated Annealing");
@@ -87,12 +89,14 @@ public class FlipFlopTest {
         for (int i = 0; i < 10; ++i) {
             int iterations = 25000 * (i + 1);
 
+            long starttime = System.currentTimeMillis();
+
             SimulatedAnnealing sa = new SimulatedAnnealing(temp, cooling, hcp);
             FixedIterationTrainer fit = new FixedIterationTrainer(sa, iterations);
             fit.train();
             double value = ef.value(sa.getOptimal());
 
-            System.out.printf("%d iterations: %s%n", iterations, value);
+            System.out.printf("%d iterations: %s (%dms)%n", iterations, value, (System.currentTimeMillis() - starttime));
         }
 
         System.out.println("Genetic Algorithm");
@@ -124,14 +128,16 @@ public class FlipFlopTest {
         int mutations = (int) maxCombo[2];
         System.out.printf("best population: %d, mates: %d, mutations: %d%n", population, mates, mutations);
         for (int i = 0; i < 10; ++i) {
-            int iterations = 500 * (i + 1);
+            int iterations = 5000 * (i + 1);
+
+            long starttime = System.currentTimeMillis();
 
             StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(population, mates, mutations, gap);
             FixedIterationTrainer fit = new FixedIterationTrainer(ga, iterations);
             fit.train();
             double value = ef.value(ga.getOptimal());
 
-            System.out.printf("%d iterations: %s%n", iterations, value);
+            System.out.printf("%d iterations: %s (%dms)%n", iterations, value, (System.currentTimeMillis() - starttime));
         }
 
         System.out.println("MIMIC");
@@ -161,12 +167,14 @@ public class FlipFlopTest {
         for (int i = 0; i < 10; ++i) {
             int iterations = 250 * (i + 1);
 
+            long starttime = System.currentTimeMillis();
+
             MIMIC mimic = new MIMIC(samples, toKeep, pop);
             FixedIterationTrainer fit = new FixedIterationTrainer(mimic, iterations);
             fit.train();
             double value = ef.value(mimic.getOptimal());
 
-            System.out.printf("%d iterations: %s%n", iterations, value);
+            System.out.printf("%d iterations: %s (%dms)%n", iterations, value, (System.currentTimeMillis() - starttime));
         }
     }
 }
