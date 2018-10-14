@@ -48,24 +48,79 @@ public class FlipFlopTest {
         GeneticAlgorithmProblem gap = new GenericGeneticAlgorithmProblem(ef, odd, mf, cf);
         ProbabilisticOptimizationProblem pop = new GenericProbabilisticOptimizationProblem(ef, odd, df);
         
-        RandomizedHillClimbing rhc = new RandomizedHillClimbing(hcp);      
+        System.out.println("Randomized Hill Climbing");
+        RandomizedHillClimbing rhc = new RandomizedHillClimbing(hcp);
         FixedIterationTrainer fit = new FixedIterationTrainer(rhc, 200000);
         fit.train();
         System.out.println(ef.value(rhc.getOptimal()));
         
-        SimulatedAnnealing sa = new SimulatedAnnealing(100, .95, hcp);
-        fit = new FixedIterationTrainer(sa, 200000);
-        fit.train();
-        System.out.println(ef.value(sa.getOptimal()));
-        
-        StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(200, 100, 20, gap);
-        fit = new FixedIterationTrainer(ga, 1000);
-        fit.train();
-        System.out.println(ef.value(ga.getOptimal()));
-        
-        MIMIC mimic = new MIMIC(200, 5, pop);
-        fit = new FixedIterationTrainer(mimic, 1000);
-        fit.train();
-        System.out.println(ef.value(mimic.getOptimal()));
+        System.out.println("Simulated Annealing");
+        // initial temp, cooling
+        double[] temps = {1e5, 1E8, 1E10, 1E12, 1E15};
+        double[] coolingRates = {0.9, 0.95, 0.99, 0.999};
+        for (int i = 0; i < temps.length; ++i) {
+            for (int j = 0; j < coolingRates.length; ++j) {
+                double temp = temps[i], cooling = coolingRates[j];
+
+                SimulatedAnnealing sa = new SimulatedAnnealing(temp, cooling, hcp);
+                fit = new FixedIterationTrainer(sa, 200000);
+                fit.train();
+                // System.out.println(ef.value(sa.getOptimal()));
+                System.out.printf("initial temp: %f, cooling: %f, value: %s%n", temp, cooling, ef.value(sa.getOptimal()));
+            }
+        }
+
+        System.out.println("Genetic Algorithm");
+        // population, toMate, toMutate
+        int[] populations = {150, 200, 250};
+        int[] mateValues = {50, 100, 150};
+        int[] mutateValues = {10, 20, 30};
+        double[] maxCombo = {0, 0, 0, 0};
+        for (int i = 0; i < populations.length; ++i) {
+            for (int j = 0; j < mateValues.length; ++j) {
+                for (int k = 0; k < mutateValues.length; ++k) {
+                    int population = populations[i], mates = mateValues[j], mutations = mutateValues[k];
+
+                    StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(population, mates, mutations, gap);
+                    fit = new FixedIterationTrainer(ga, 1000);
+                    fit.train();
+                    double value = ef.value(ga.getOptimal());
+
+                    System.out.printf("population: %d, mates: %d, mutations: %d, value: %s%n", population, mates, mutations, value);
+
+                    if (value > maxCombo[3]) {
+                        maxCombo = new double[] {population, mates, mutations, value};
+                    }
+                }
+            }
+        }
+        int population = (int) maxCombo[0];
+        int mates = (int) maxCombo[1];
+        int mutations = (int) maxCombo[2];
+        int[] iterations = {500, 1000, 1500, 2000, 2500, 3000};
+        for (int i = 0; i < iterations.length; ++i) {
+            StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(population, mates, mutations, gap);
+            fit = new FixedIterationTrainer(ga, iterations[i]);
+            fit.train();
+            double value = ef.value(ga.getOptimal());
+
+            System.out.printf("%d iterations: %s%n", iterations[i], value);
+        }
+
+        System.out.println("MIMIC");
+        // samples, toKeep
+        int[] sampleValues = {100, 150, 200, 250, 300};
+        int[] toKeepValues = {2, 4, 8, 16};
+        for (int i = 0; i < sampleValues.length; ++i) {
+            for (int j = 0; j < toKeepValues.length; ++j) {
+                int samples = sampleValues[i], toKeep = toKeepValues[j];
+
+                MIMIC mimic = new MIMIC(samples, toKeep, pop);
+                fit = new FixedIterationTrainer(mimic, 1000);
+                fit.train();
+                // System.out.println(ef.value(mimic.getOptimal()));
+                System.out.printf("samples: %d, toKeep: %d, value: %s%n", samples, toKeep, ef.value(mimic.getOptimal()));
+            }
+        }
     }
 }

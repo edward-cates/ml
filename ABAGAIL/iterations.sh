@@ -1,10 +1,9 @@
-count=3
+backpropIterations=(20 40 60 80 100)
+rhcIterations=(1000 2000 3000 4000 5000)
+saIterations=(500 1000 1500 2000 2500 3000)
+gaIterations=(10 20 30 40 50)
 
-backpropIterations=(100 200 300)
-rhcIterations=(1000 2000 3000)
-saIterations=(1000 2000 3000)
-gaIterations=(10 20 30)
-
+count=${#backpropIterations[@]}
 i=0
 
 while [ $i -lt $count ]; do

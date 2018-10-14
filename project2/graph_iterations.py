@@ -51,7 +51,7 @@ for i in range(n):
   #endfor
 #endfor
 
-titles = ['backprop', 'rhc', 'sa', 'ga']
+titles = ['Backprop', 'Random Hill Climbing', 'Simulated Annealing', 'Genetic Algorithms']
 
 for i in range(4):
   fig = plt.figure()
@@ -60,7 +60,7 @@ for i in range(4):
   plt.title(titles[i])
   plt.xlabel("Instances")
   plt.ylabel("Error")
-  plt.ylim(0, 100)
+  plt.ylim(0, 50)
   plt.legend()
   fig.savefig('graphs/{}'.format(titles[i]))
 #endfor

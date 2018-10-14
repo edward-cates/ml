@@ -1,0 +1,75 @@
+Will find params
+backprop iterations: 200
+rhc iterations: 2000
+sa iterations: 2000
+ga iterations: 20
+===========Cross Validation for NN Params=========
+Nodes: 17	Error: 0.371%
+Nodes: 5	Error: 0.200%
+Nodes: 10	Error: 0.286%
+Nodes: 20	Error: 0.343%
+Nodes: 50	Error: 0.344%
+Nodes: 100	Error: 0.458%
+Nodes: 200	Error: 0.400%
+
+Best Num Hidden Nodes: 5	Error: 0.200%
+===========Backpropagation=========
+Train Error: 0.314% 
+Test Error: 0.200% 
+Time Elapsed: 1.413 s 
+===========Randomized Hill Climbing=========
+Train Error: 7.943% 
+Test Error: 8.000% 
+Time Elapsed: 5.034 s 
+===========Determining Simulated Annealing Params=========
+temp: 100000.000, cooling: 0.900, error: 52.378
+temp: 100000.000, cooling: 0.950, error: 45.634
+temp: 100000.000, cooling: 0.990, error: 48.532
+temp: 100000.000, cooling: 0.999, error: 46.647
+temp: 100000000.000, cooling: 0.900, error: 53.888
+temp: 100000000.000, cooling: 0.950, error: 48.795
+temp: 100000000.000, cooling: 0.990, error: 50.034
+temp: 100000000.000, cooling: 0.999, error: 53.540
+temp: 10000000000.000, cooling: 0.900, error: 49.387
+temp: 10000000000.000, cooling: 0.950, error: 54.292
+temp: 10000000000.000, cooling: 0.990, error: 47.641
+temp: 10000000000.000, cooling: 0.999, error: 50.212
+temp: 1000000000000.000, cooling: 0.900, error: 48.582
+temp: 1000000000000.000, cooling: 0.950, error: 50.739
+temp: 1000000000000.000, cooling: 0.990, error: 47.442
+temp: 1000000000000.000, cooling: 0.999, error: 51.138
+temp: 1000000000000000.000, cooling: 0.900, error: 48.494
+temp: 1000000000000000.000, cooling: 0.950, error: 51.408
+temp: 1000000000000000.000, cooling: 0.990, error: 47.920
+temp: 1000000000000000.000, cooling: 0.999, error: 53.058
+Best Cooling: 0.950
+Best Temp: 100000.000
+===========Simulated Annealing=========
+Train Error: 20.343% 
+Test Error: 22.133% 
+Time Elapsed: 6.018 s 
+===========Determining Genetic Algorithms Params=========
+population: 315, mate: 63.000, mutate: 63.000, error: 22.748
+population: 315, mate: 63.000, mutate: 126.000, error: 22.930
+population: 315, mate: 126.000, mutate: 63.000, error: 25.173
+population: 315, mate: 126.000, mutate: 126.000, error: 25.395
+population: 472, mate: 63.000, mutate: 63.000, error: 22.013
+population: 472, mate: 63.000, mutate: 126.000, error: 20.982
+population: 472, mate: 126.000, mutate: 63.000, error: 22.584
+population: 472, mate: 126.000, mutate: 126.000, error: 21.991
+population: 630, mate: 63.000, mutate: 63.000, error: 24.446
+population: 630, mate: 63.000, mutate: 126.000, error: 24.475
+population: 630, mate: 126.000, mutate: 63.000, error: 23.082
+population: 630, mate: 126.000, mutate: 126.000, error: 23.179
+population: 787, mate: 63.000, mutate: 63.000, error: 21.372
+population: 787, mate: 63.000, mutate: 126.000, error: 25.135
+population: 787, mate: 126.000, mutate: 63.000, error: 23.672
+population: 787, mate: 126.000, mutate: 126.000, error: 21.157
+Population Ratio: 0.150
+Mate Ratio: 0.020
+Mutate Ratio: 0.040
+Error: 20.982% 
+===========Genetic Algorithms=========
+Train Error: 27.114% 
+Test Error: 28.733% 
+Time Elapsed: 10.183 s 
