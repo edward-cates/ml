@@ -32,10 +32,10 @@ import shared.FixedIterationTrainer;
  */
 public class FourPeaksTest {
     /** The n value */
-    private static final int N = 200;
+    private static final int N = 10000;
     /** The t value */
-    private static final int T = N / 5;
-    
+    private static final int T = N / 2;
+
     public static void main(String[] args) {
         int[] ranges = new int[N];
         Arrays.fill(ranges, 2);
@@ -114,9 +114,9 @@ public class FourPeaksTest {
         // System.out.println("GA: " + ef.value(ga.getOptimal()));
         System.out.println("Genetic Algorithm");
         // population, toMate, toMutate
-        int[] populations = {150, 200, 250};
-        int[] mateValues = {50, 100, 150};
-        int[] mutateValues = {10, 20, 30};
+        int[] populations = {100, 150, 200};
+        int[] mateValues = {25, 50, 75};
+        int[] mutateValues = {5, 10, 15};
         maxCombo = new double[] {0, 0, 0, 0};
         for (int i = 0; i < populations.length; ++i) {
             for (int j = 0; j < mateValues.length; ++j) {
@@ -141,7 +141,7 @@ public class FourPeaksTest {
         int mutations = (int) maxCombo[2];
         System.out.printf("best population: %d, mates: %d, mutations: %d%n", population, mates, mutations);
         for (int i = 0; i < 10; ++i) {
-            int iterations = 500 * (i + 1);
+            int iterations = 5000 * (i + 1);
 
             long starttime = System.currentTimeMillis();
 

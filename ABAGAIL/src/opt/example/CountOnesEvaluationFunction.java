@@ -15,10 +15,10 @@ public class CountOnesEvaluationFunction implements EvaluationFunction {
      */
     public double value(Instance d) {
         Vector data = d.getData();
-        double val = 0;
+        double val = 1;
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i) == 1) {
-                val++;
+                ++val;
             }
         }
         return val;
