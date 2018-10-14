@@ -32,7 +32,7 @@ import shared.FixedIterationTrainer;
  */
 public class TwoColorsTest {
     /** The number of colors */
-    private static final int k = 2;
+    private static final int k = 20;
     /** The N value */
     private static final int N = 100*k;
 
