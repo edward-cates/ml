@@ -1,28 +1,28 @@
 import matplotlib.pyplot as plt
 import os
 
-out = os.popen('cat output/iterations.log | grep iterations').read().split('\n')
+out = os.popen('cat output/part1/iterations.log | grep iterations').read().split('\n')
 it = []
 for i in range(0, len(out) - 1):
   it.append(float(out[i].split(' ')[-1]))
 #endfor
 print('iterations', it)
 
-out = os.popen('cat output/iterations.log | grep "Train Error"').read().split('\n')
+out = os.popen('cat output/part1/iterations.log | grep "Train Error"').read().split('\n')
 train = []
 for i in range(0, len(out) - 1):
   train.append(float(out[i].split(' ')[-2][:-1]))
 #endfor
 print('train', train)
 
-out = os.popen('cat output/iterations.log | grep "Test Error"').read().split('\n')
+out = os.popen('cat output/part1/iterations.log | grep "Test Error"').read().split('\n')
 test = []
 for i in range(0, len(out) - 1):
   test.append(float(out[i].split(' ')[-2][:-1]))
 #endfor
 print('test', test)
 
-out = os.popen('cat output/iterations.log | grep "Time Elapsed"').read().split('\n')
+out = os.popen('cat output/part1/iterations.log | grep "Time Elapsed"').read().split('\n')
 time = []
 for i in range(0, len(out) - 1):
   time.append(float(out[i].split(' ')[-3]))
