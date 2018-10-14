@@ -1,3 +1,4 @@
+// https://www.whitman.edu/Documents/Academics/Mathematics/2014/carrjk.pdf
 package opt.example;
 
 import util.linalg.Vector;
@@ -21,6 +22,6 @@ public class CountOnesEvaluationFunction implements EvaluationFunction {
                 ++val;
             }
         }
-        return val;
+        return Math.cos(Math.sin(val));
     }
 }
