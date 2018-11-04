@@ -17,7 +17,7 @@ matplotlib.rcParams.update({'font.size': 22})
 
 data = pd.read_csv('data/{}-dataset.csv'.format(sys.argv[1])).values
 
-if False:
+if True:
   X = data[:, 1:4]
   enc = OneHotEncoder(handle_unknown='ignore')
   X = enc.fit_transform(X).toarray()
@@ -34,8 +34,8 @@ else:
 
 y = data[:, -1]
 
-# range_n_clusters = [2, 4, 6, 8, 10]
-range_n_clusters = range(2, 41, 4)
+range_n_clusters = [2, 4, 6, 8, 10]
+# range_n_clusters = range(2, 41, 4)
 values = []
 
 # pca = PCA(n_components=2)
@@ -57,8 +57,8 @@ for n_clusters in range_n_clusters:
 
     # Initialize the clusterer with n_clusters value and a random generator
     # seed of 10 for reproducibility.
-    clusterer = GaussianMixture(n_components=n_clusters, random_state=10)
-    # clusterer = KMeans(n_clusters=n_clusters, random_state=10)
+    # clusterer = GaussianMixture(n_components=n_clusters, random_state=10)
+    clusterer = KMeans(n_clusters=n_clusters)
     cluster_labels = clusterer.fit_predict(X)
 
     # The silhouette_score gives the average value for all the samples.
@@ -68,7 +68,7 @@ for n_clusters in range_n_clusters:
     print("For n_clusters =", n_clusters,
           "The average silhouette_score is :", silhouette_avg)
 
-    log_prob, aic, bic = clusterer.score(X), clusterer.aic(X), clusterer.bic(X)
+    log_prob, aic, bic = clusterer.score(X), 0, 0#, clusterer.aic(X), clusterer.bic(X)
     print("The average log_prob is:", log_prob)
     print("The aic is:", aic)
     print("The bic is:", bic)
@@ -118,8 +118,8 @@ for n_clusters in range_n_clusters:
     #             c=colors, edgecolor='k')
 
     # Labeling the clusters
-    # centers = clusterer.cluster_centers_
-    # print(centers)
+    centers = clusterer.cluster_centers_
+    print(centers)
     # Draw white circles at cluster centers
     # ax2.scatter(centers[:, 0], centers[:, 1], marker='o',
     #             c="white", alpha=1, s=200, edgecolor='k')
