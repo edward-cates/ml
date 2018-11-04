@@ -4,7 +4,9 @@ from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import silhouette_samples, silhouette_score
+from sklearn.preprocessing import normalize
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.random_projection import SparseRandomProjection
 
 import matplotlib
 import matplotlib.cm as cm
@@ -29,22 +31,34 @@ if fn == 'bank':
   X = np.append(data[:, 4:-1], X, axis=1)
   X = np.append(X, data[:, :1], axis=1)
   print(X.shape)
+
+  X = normalize(X, axis=0)
+
+  range_n_clusters = range(2, 21, 1)
+  range_n_clusters = [15]
 else:
   X = data[:, :-1]
+  range_n_clusters = range(2, 11, 1)
+  range_n_clusters = [2]
   print(X.shape)
 #endif
 
 y = data[:, -1]
 
-# range_n_clusters = [2, 4, 6, 8, 10]
-range_n_clusters = range(2, 81, 8)
+range_n_components = range(2, X.shape[1] + 1)
+
 values = []
 
 # pca = PCA(n_components=2)
 # X = pca.fit_transform(X)
 # print(X.shape)
 
-for n_clusters in range_n_clusters:
+for n_components in range_n_components:
+  for n_clusters in range_n_clusters:
+    reducer = SparseRandomProjection(n_components=n_components)
+    x = reducer.fit_transform(X)
+    print(x.shape)
+
     # Create a subplot with 1 row and 2 columns
     fig, (ax1, ax2) = plt.subplots(1, 2)
     fig.set_size_inches(18, 7)
@@ -55,33 +69,39 @@ for n_clusters in range_n_clusters:
     ax1.set_xlim([-0.1, 1])
     # The (n_clusters+1)*10 is for inserting blank space between silhouette
     # plots of individual clusters, to demarcate them clearly.
-    ax1.set_ylim([0, len(X) + (n_clusters + 1) * 10])
+    ax1.set_ylim([0, len(x) + (n_clusters + 1) * 10])
 
     # Initialize the clusterer with n_clusters value and a random generator
     # seed of 10 for reproducibility.
     clusterer = KMeans(n_clusters=n_clusters)
-    cluster_labels = clusterer.fit_predict(X)
+    cluster_labels = clusterer.fit_predict(x)
 
     # The silhouette_score gives the average value for all the samples.
     # This gives a perspective into the density and separation of the formed
     # clusters
-    silhouette_avg = silhouette_score(X, cluster_labels)
+    silhouette_avg = silhouette_score(x, cluster_labels)
     print("For n_clusters =", n_clusters,
           "The average silhouette_score is :", silhouette_avg)
 
     # Compute the silhouette scores for each sample
-    sample_silhouette_values = silhouette_samples(X, cluster_labels)
+    sample_silhouette_values = silhouette_samples(x, cluster_labels)
 
-    values.append(silhouette_avg)
+    centers = clusterer.cluster_centers_
 
     y_lower = 10
+    sum_sq = 0
     for i in range(n_clusters):
         # Aggregate the silhouette scores for samples belonging to
         # cluster i, and sort them
         ith_cluster_silhouette_values = \
             sample_silhouette_values[cluster_labels == i]
 
+        center = centers[i]
         ith_cluster_silhouette_values.sort()
+
+        diff = x[cluster_labels == i] - center
+        sq_diff = diff * diff
+        sum_sq += sq_diff.sum()
 
         size_cluster_i = ith_cluster_silhouette_values.shape[0]
         y_upper = y_lower + size_cluster_i
@@ -96,6 +116,9 @@ for n_clusters in range_n_clusters:
 
         # Compute the new y_lower for next plot
         y_lower = y_upper + 10  # 10 for the 0 samples
+    #endfor
+
+    values.append([silhouette_avg, sum_sq])
 
     ax1.set_title("The silhouette plot for the various clusters.")
     ax1.set_xlabel("The silhouette coefficient values")
@@ -109,12 +132,12 @@ for n_clusters in range_n_clusters:
 
     # 2nd Plot showing the actual clusters formed
     colors = cm.nipy_spectral(cluster_labels.astype(float) / n_clusters)
-    ax2.scatter(X[:, 0], X[:, 1], marker='.', s=30, lw=0, alpha=0.7,
+    ax2.scatter(x[:, 0], x[:, 1], marker='.', s=30, lw=0, alpha=0.7,
                 c=colors, edgecolor='k')
 
     # Labeling the clusters
-    centers = clusterer.cluster_centers_
-    print(centers)
+    if n_clusters == 2:
+      print(centers)
     # Draw white circles at cluster centers
     ax2.scatter(centers[:, 0], centers[:, 1], marker='o',
                 c="white", alpha=1, s=200, edgecolor='k')
@@ -130,7 +153,27 @@ for n_clusters in range_n_clusters:
     plt.suptitle(("Silhouette analysis for KMeans clustering on sample data "
                   "with n_clusters = %d" % n_clusters),
                  fontsize=14, fontweight='bold')
+  #endfor
+#endfor
 
-plt.plot(range_n_clusters, values)
+x_label = "N Clusters"
+
+range_n_clusters = range_n_components
+x_label = "Attributes"
+
+fig, (ax1, ax2) = plt.subplots(1, 2)
+
+values = np.array(values)
+
+ax1.plot(range_n_clusters, values[:, 0])
+ax1.set_xlabel(x_label)
+ax1.set_ylabel("Silhouette Score")
+ax1.set_title("Silhouette Score by Clusters on {} data set".format(fn))
+ax1.set_ylim([-1, 1])
+
+ax2.plot(range_n_clusters, values[:, 1])
+ax2.set_xlabel(x_label)
+ax2.set_ylabel("SSE")
+ax2.set_title("Sum of Squared Error by Clusters on {} data set".format(fn))
 
 plt.show()
