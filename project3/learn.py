@@ -22,9 +22,11 @@ import sys
 
 matplotlib.rcParams.update({'font.size': 22})
 
-data = pd.read_csv('data/{}-dataset.csv'.format(sys.argv[1])).values
+fn = sys.argv[1]
 
-if True:
+data = pd.read_csv('data/{}-dataset.csv'.format(fn)).values
+
+if fn == 'bank':
   X = data[:, 1:4]
   enc = OneHotEncoder(handle_unknown='ignore')
   X = enc.fit_transform(X).toarray()
@@ -40,9 +42,9 @@ y = data[:, -1]
 
 reducers = [
   { "label": "FeatCluster", "reducer": FeatCluster },
-  { "label": "ICA", "reducer": FastICA },
-  { "label": "PCA", "reducer": PCA },
-  { "label": "Random", "reducer": SparseRandomProjection },
+  # { "label": "ICA", "reducer": FastICA },
+  # { "label": "PCA", "reducer": PCA },
+  # { "label": "Random", "reducer": SparseRandomProjection },
   # { "label": "Tree", "reducer": RandomTreesEmbedding },
 ]
 

@@ -13,3 +13,20 @@ Tree 14 => 10 components: 80.36473895582328 percent correct
 Tree 14 => 12 components: 84.0859437751004 percent correct
 (4998, 110)
 Tree 14 => 14 components: 74.34666666666668 percent correct
+
+[again]
+(4998, 14)
+(4998, 12)
+Tree 14 => 2 components: 60.18939759036145 percent correct
+(4998, 31)
+Tree 14 => 4 components: 49.480642570281134 percent correct
+(4998, 47)
+Tree 14 => 6 components: 61.30184738955824 percent correct
+(4998, 62)
+Tree 14 => 8 components: 67.73012048192773 percent correct
+(4998, 75)
+Tree 14 => 10 components: 66.3031325301205 percent correct
+(4998, 92)
+Tree 14 => 12 components: 78.32586345381524 percent correct
+(4998, 110)
+Tree 14 => 14 components: 61.62923694779116 percent correct

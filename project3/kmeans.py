@@ -1,7 +1,9 @@
 from __future__ import print_function
 
 from sklearn.cluster import KMeans
+from sklearn.ensemble import RandomTreesEmbedding
 from sklearn.decomposition import PCA
+from sklearn.decomposition import FastICA
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.preprocessing import normalize
@@ -36,12 +38,12 @@ if fn == 'bank':
 
   range_n_clusters = range(2, 21, 1)
   # range_n_clusters = [15]
-  range_n_components = [X.shape[1]]
+  range_n_components = [4, 17, 30]
 else:
   X = data[:, :-1]
   range_n_clusters = range(2, 11, 1)
   # range_n_clusters = [2]
-  range_n_components = [X.shape[1]]
+  range_n_components = [2, 5, 8, 11, 14]
   print(X.shape)
 #endif
 
@@ -49,30 +51,36 @@ y = data[:, -1]
 
 # range_n_components = range(2, X.shape[1] + 1)
 
-values = []
-
 # pca = PCA(n_components=2)
 # X = pca.fit_transform(X)
 # print(X.shape)
 
+fig, (ax1, ax2) = plt.subplots(1, 2)
+
 for n_components in range_n_components:
+  values = []
+
   for n_clusters in range_n_clusters:
-    reducer = SparseRandomProjection(n_components=n_components)
-    x = reducer.fit_transform(X)
+    # reducer = PCA(n_components=n_components)
+    # reducer = FastICA(n_components=n_components)
+    # reducer = SparseRandomProjection(n_components=n_components)
+    # x = reducer.fit_transform(X)
+    reducer = RandomTreesEmbedding(n_estimators=n_components, max_depth=3)
+    x = reducer.fit_transform(X).toarray()
     print(x.shape)
-    x = X
+    # x = X
 
-    # Create a subplot with 1 row and 2 columns
-    fig, (ax1, ax2) = plt.subplots(1, 2)
-    fig.set_size_inches(18, 7)
+    # # Create a subplot with 1 row and 2 columns
+    # fig, (ax1, ax2) = plt.subplots(1, 2)
+    # fig.set_size_inches(18, 7)
 
-    # The 1st subplot is the silhouette plot
-    # The silhouette coefficient can range from -1, 1 but in this example all
-    # lie within [-0.1, 1]
-    ax1.set_xlim([-0.1, 1])
-    # The (n_clusters+1)*10 is for inserting blank space between silhouette
-    # plots of individual clusters, to demarcate them clearly.
-    ax1.set_ylim([0, len(x) + (n_clusters + 1) * 10])
+    # # The 1st subplot is the silhouette plot
+    # # The silhouette coefficient can range from -1, 1 but in this example all
+    # # lie within [-0.1, 1]
+    # ax1.set_xlim([-0.1, 1])
+    # # The (n_clusters+1)*10 is for inserting blank space between silhouette
+    # # plots of individual clusters, to demarcate them clearly.
+    # ax1.set_ylim([0, len(x) + (n_clusters + 1) * 10])
 
     # Initialize the clusterer with n_clusters value and a random generator
     # seed of 10 for reproducibility.
@@ -83,7 +91,7 @@ for n_components in range_n_components:
     # This gives a perspective into the density and separation of the formed
     # clusters
     silhouette_avg = silhouette_score(x, cluster_labels)
-    print("For n_clusters =", n_clusters,
+    print("For n_clusters =", n_clusters, "and n_components=", n_components,
           "The average silhouette_score is :", silhouette_avg)
 
     # Compute the silhouette scores for each sample
@@ -109,13 +117,13 @@ for n_components in range_n_components:
         size_cluster_i = ith_cluster_silhouette_values.shape[0]
         y_upper = y_lower + size_cluster_i
 
-        color = cm.nipy_spectral(float(i) / n_clusters)
-        ax1.fill_betweenx(np.arange(y_lower, y_upper),
-                          0, ith_cluster_silhouette_values,
-                          facecolor=color, edgecolor=color, alpha=0.7)
+        # color = cm.nipy_spectral(float(i) / n_clusters)
+        # ax1.fill_betweenx(np.arange(y_lower, y_upper),
+        #                   0, ith_cluster_silhouette_values,
+        #                   facecolor=color, edgecolor=color, alpha=0.7)
 
-        # Label the silhouette plots with their cluster numbers at the middle
-        ax1.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
+        # # Label the silhouette plots with their cluster numbers at the middle
+        # ax1.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
 
         # Compute the new y_lower for next plot
         y_lower = y_upper + 10  # 10 for the 0 samples
@@ -123,60 +131,60 @@ for n_components in range_n_components:
 
     values.append([silhouette_avg, sum_sq])
 
-    ax1.set_title("The silhouette plot for the various clusters.")
-    ax1.set_xlabel("The silhouette coefficient values")
-    ax1.set_ylabel("Cluster label")
+    # ax1.set_title("The silhouette plot for the various clusters.")
+    # ax1.set_xlabel("The silhouette coefficient values")
+    # ax1.set_ylabel("Cluster label")
 
-    # The vertical line for average silhouette score of all the values
-    ax1.axvline(x=silhouette_avg, color="red", linestyle="--")
+    # # The vertical line for average silhouette score of all the values
+    # ax1.axvline(x=silhouette_avg, color="red", linestyle="--")
 
-    ax1.set_yticks([])  # Clear the yaxis labels / ticks
-    ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+    # ax1.set_yticks([])  # Clear the yaxis labels / ticks
+    # ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
-    # 2nd Plot showing the actual clusters formed
-    colors = cm.nipy_spectral(cluster_labels.astype(float) / n_clusters)
-    ax2.scatter(x[:, 0], x[:, 1], marker='.', s=30, lw=0, alpha=0.7,
-                c=colors, edgecolor='k')
+    # # 2nd Plot showing the actual clusters formed
+    # colors = cm.nipy_spectral(cluster_labels.astype(float) / n_clusters)
+    # ax2.scatter(x[:, 0], x[:, 1], marker='.', s=30, lw=0, alpha=0.7,
+    #             c=colors, edgecolor='k')
 
-    # Labeling the clusters
-    if n_clusters == 2:
-      print(centers)
-    # Draw white circles at cluster centers
-    ax2.scatter(centers[:, 0], centers[:, 1], marker='o',
-                c="white", alpha=1, s=200, edgecolor='k')
+    # # Labeling the clusters
+    # if n_clusters == 2:
+    #   print(centers)
+    # # Draw white circles at cluster centers
+    # ax2.scatter(centers[:, 0], centers[:, 1], marker='o',
+    #             c="white", alpha=1, s=200, edgecolor='k')
 
-    for i, c in enumerate(centers):
-        ax2.scatter(c[0], c[1], marker='$%d$' % i, alpha=1,
-                    s=50, edgecolor='k')
+    # for i, c in enumerate(centers):
+    #     ax2.scatter(c[0], c[1], marker='$%d$' % i, alpha=1,
+    #                 s=50, edgecolor='k')
 
-    ax2.set_title("The visualization of the clustered data.")
-    ax2.set_xlabel("Feature space for the 1st feature")
-    ax2.set_ylabel("Feature space for the 2nd feature")
+    # ax2.set_title("The visualization of the clustered data.")
+    # ax2.set_xlabel("Feature space for the 1st feature")
+    # ax2.set_ylabel("Feature space for the 2nd feature")
 
-    plt.suptitle(("Silhouette analysis for KMeans clustering on sample data "
-                  "with n_clusters = %d" % n_clusters),
-                 fontsize=14, fontweight='bold')
+    # plt.suptitle(("Silhouette analysis for KMeans clustering on sample data "
+    #               "with n_clusters = %d" % n_clusters),
+    #              fontsize=14, fontweight='bold')
   #endfor
+
+  x_label = "N Clusters"
+
+  # range_n_clusters = range_n_components
+  # x_label = "Attributes"
+
+  values = np.array(values)
+
+  ax1.plot(range_n_clusters, values[:, 0], label="{} Attr.".format(n_components))
+  ax1.set_xlabel(x_label)
+  ax1.set_ylabel("Silhouette Score")
+  ax1.set_title("Silhouette Score by Clusters on {} data set".format(fn))
+  ax1.set_ylim([-1, 1])
+  ax1.legend()
+
+  ax2.plot(range_n_clusters, values[:, 1], label="{} Attr.".format(n_components))
+  ax2.set_xlabel(x_label)
+  ax2.set_ylabel("SSE")
+  ax2.set_title("Sum of Squared Error by Clusters on {} data set".format(fn))
+  ax2.legend()
 #endfor
-
-x_label = "N Clusters"
-
-# range_n_clusters = range_n_components
-# x_label = "Attributes"
-
-fig, (ax1, ax2) = plt.subplots(1, 2)
-
-values = np.array(values)
-
-ax1.plot(range_n_clusters, values[:, 0])
-ax1.set_xlabel(x_label)
-ax1.set_ylabel("Silhouette Score")
-ax1.set_title("Silhouette Score by Clusters on {} data set".format(fn))
-ax1.set_ylim([-1, 1])
-
-ax2.plot(range_n_clusters, values[:, 1])
-ax2.set_xlabel(x_label)
-ax2.set_ylabel("SSE")
-ax2.set_title("Sum of Squared Error by Clusters on {} data set".format(fn))
 
 plt.show()

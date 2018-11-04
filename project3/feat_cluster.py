@@ -15,9 +15,10 @@ import sys
 
 class FeatCluster:
 
-  def __init__(self, n_components = 10, n_clusters = 2, cluster_class = KMeans):
+  def __init__(self, n_components = 10, n_clusters = 2):
     self.n_components = n_components
-    self.clusterer = cluster_class(n_clusters=n_clusters)
+    # self.clusterer = KMeans(n_clusters=n_clusters)
+    self.clusterer = GaussianMixture(n_components=n_clusters)
   #enddef
 
   def fit_transform(self, X):
@@ -28,7 +29,8 @@ class FeatCluster:
 
       for j in range(X.shape[1]):
         labels = self.clusterer.fit_predict(X)
-        score = silhouette_score(X, labels)
+        # score = silhouette_score(X, labels)
+        score = self.clusterer.bic(X)
 
         if score > best_score:
           best_score, best_j = score, j
