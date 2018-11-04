@@ -3,6 +3,7 @@ from __future__ import print_function
 from sklearn.cluster import KMeans
 from sklearn.decomposition import FastICA
 from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomTreesEmbedding
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import cross_val_score
@@ -38,22 +39,26 @@ print(X.shape)
 y = data[:, -1]
 
 reducers = [
-  { "label": "FeatCluster", "reducer": FeatCluster },
-  { "label": "ICA", "reducer": FastICA },
-  { "label": "PCA", "reducer": PCA },
-  { "label": "Random", "reducer": SparseRandomProjection },
+  # { "label": "FeatCluster", "reducer": FeatCluster },
+  # { "label": "ICA", "reducer": FastICA },
+  # { "label": "PCA", "reducer": PCA },
+  # { "label": "Random", "reducer": SparseRandomProjection },
+  { "label": "Tree", "reducer": RandomTreesEmbedding },
 ]
 
 range_n_components = range(2, X.shape[1] + 1, 2)
+
+folds = 10
 
 values = []
 
 for r in reducers:
   for n_components in range_n_components:
     learner = MLPClassifier(solver='sgd', learning_rate='adaptive', max_iter=1000)
-    reducer = r["reducer"](n_components=n_components)
+    reducer = r["reducer"](n_estimators=n_components, max_depth=3)
     x = reducer.fit_transform(X)
-    score = cross_val_score(learner, x, y, cv=10).mean()
+    print(x.shape)
+    score = cross_val_score(learner, x, y, cv=folds).mean()
     values.append(score)
     print(r["label"], X.shape[1], '=>', n_components, 'components:', score * 100, 'percent correct')
   #endfor

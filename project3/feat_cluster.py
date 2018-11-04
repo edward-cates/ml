@@ -15,9 +15,9 @@ import sys
 
 class FeatCluster:
 
-  def __init__(self, n_components = 10):
+  def __init__(self, n_components = 10, n_clusters = 2, cluster_class = KMeans):
     self.n_components = n_components
-    self.clusterer = GaussianMixture(n_components=2)
+    self.clusterer = cluster_class(n_clusters=n_clusters)
   #enddef
 
   def fit_transform(self, X):

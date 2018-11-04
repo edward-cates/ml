@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+from scipy.stats import kurtosis
 from sklearn.cluster import KMeans
 from sklearn.decomposition import FastICA
 from sklearn.decomposition import PCA
@@ -55,9 +56,10 @@ for n_components in range_n_components:
     # plots of individual clusters, to demarcate them clearly.
     # ax1.set_ylim([0, len(X) + (n_clusters + 1) * 10])
     # reducer = PCA(n_components=n_components)
-    # reducer = FastICA(n_components=n_components)
-    reducer = SparseRandomProjection(n_components=n_components)
+    reducer = FastICA(n_components=n_components)
+    # reducer = SparseRandomProjection(n_components=n_components)
     X = reducer.fit_transform(Xo)
+    print(kurtosis(X))
 
     # Initialize the clusterer with n_clusters value and a random generator
     # seed of 10 for reproducibility.
@@ -160,3 +162,5 @@ ax3.set_xlabel("N Components")
 ax3.legend()
 
 plt.show()
+
+print(reducer.explained_variance_)

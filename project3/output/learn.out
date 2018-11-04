@@ -1,0 +1,31 @@
+(4998, 14)
+FeatCluster 14 => 2 components: 63.55124497991967 percent correct
+FeatCluster 14 => 4 components: 63.911646586345384 percent correct
+FeatCluster 14 => 6 components: 66.01317269076306 percent correct
+FeatCluster 14 => 8 components: 65.77277108433735 percent correct
+FeatCluster 14 => 10 components: 66.03325301204819 percent correct
+FeatCluster 14 => 12 components: 65.85333333333334 percent correct
+FeatCluster 14 => 14 components: 66.1532530120482 percent correct
+ICA 14 => 2 components: 55.8378313253012 percent correct
+ICA 14 => 4 components: 52.980000000000004 percent correct
+ICA 14 => 6 components: 53.638554216867476 percent correct
+ICA 14 => 8 components: 58.12819277108433 percent correct
+ICA 14 => 10 components: 60.804497991967864 percent correct
+/home/edward/.local/lib/python2.7/site-packages/sklearn/decomposition/fastica_.py:121: ConvergenceWarning: FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.
+  ConvergenceWarning)
+ICA 14 => 12 components: 57.60586345381527 percent correct
+ICA 14 => 14 components: 53.48056224899598 percent correct
+PCA 14 => 2 components: 58.90674698795182 percent correct
+PCA 14 => 4 components: 85.15277108433736 percent correct
+PCA 14 => 6 components: 87.13518072289158 percent correct
+PCA 14 => 8 components: 90.43518072289156 percent correct
+PCA 14 => 10 components: 93.07815261044178 percent correct
+PCA 14 => 12 components: 92.47421686746989 percent correct
+PCA 14 => 14 components: 92.89485943775102 percent correct
+Random 14 => 2 components: 50.0 percent correct
+Random 14 => 4 components: 50.0 percent correct
+Random 14 => 6 components: 50.0 percent correct
+Random 14 => 8 components: 50.0 percent correct
+Random 14 => 10 components: 50.0 percent correct
+Random 14 => 12 components: 50.0 percent correct
+Random 14 => 14 components: 50.0 percent correct
