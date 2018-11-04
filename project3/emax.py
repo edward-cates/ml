@@ -37,7 +37,7 @@ if fn == 'bank':
 
   range_n_clusters = range(2, 41, 4)
   # range_n_clusters = [15]
-  range_n_components = [17]
+  range_n_components = [25]
 else:
   X = data[:, :-1]
   X = normalize(X, axis=0)
@@ -59,8 +59,9 @@ values = []
 
 for n_components in range_n_components:
   for n_clusters in range_n_clusters:
+    reducer = PCA(n_components=n_components)
     # reducer = SparseRandomProjection(n_components=n_components)
-    reducer = FastICA(n_components=n_components)
+    # reducer = FastICA(n_components=n_components)
     x = reducer.fit_transform(X)
     print(x.shape)
 
@@ -91,13 +92,13 @@ fig, (ax2, ax3) = plt.subplots(1, 2)
 ax2.set_title("Log Likelihood")
 ax2.plot(range_n_clusters, values[:, 1])
 ax2.set_xlabel(x_label)
-ax2.set_ylim([0, 150])
+# ax2.set_ylim([0, 150])
 
 ax3.set_title("AIC / BIC")
 ax3.plot(range_n_clusters, values[:, 2], label="AIC")
 ax3.plot(range_n_clusters, values[:, 3], label="BIC")
 ax3.set_xlabel(x_label)
-ax3.set_ylim([-15e5, 0])
+# ax3.set_ylim([-15e5, 0])
 ax3.legend()
 
 plt.show()

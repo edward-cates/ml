@@ -4,6 +4,7 @@ from scipy.stats import kurtosis
 from sklearn.cluster import KMeans
 from sklearn.decomposition import FastICA
 from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomTreesEmbedding
 from sklearn.feature_selection import mutual_info_classif
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.mixture import GaussianMixture
@@ -55,10 +56,11 @@ for n_components in range_n_components:
     # reducer = PCA(n_components=n_components)
     # reducer = FastICA(n_components=n_components)
     reducer = SparseRandomProjection(n_components=n_components)
+    # reducer = RandomTreesEmbedding(n_estimators=n_components, max_depth=3)
     X = reducer.fit_transform(Xo)
-    # kur = kurtosis(X)
-    # print(kur)
-    # values.append(np.absolute(kur).mean())
+    kur = kurtosis(X)
+    print(kur)
+    values.append(np.absolute(kur).mean())
 
     # print(mutual_info_classif(X, y))
 #endfor
@@ -66,16 +68,16 @@ for n_components in range_n_components:
 # values = reducer.explained_variance_
 # print(values)
 
-# fig = plt.figure()
+fig = plt.figure()
 
 # plt.plot(range_n_components, values[:-1])
 # plt.title("Eigenvalues by Number of Attributes for {} data set".format(fn))
 # plt.ylabel("Eigenvalue")
 # plt.xlabel("Attributes")
 
-# plt.plot(range_n_components, values)
-# plt.title("Avg Kurtosis by Number of Attributes for {} data set".format(fn))
-# plt.ylabel("Avg. Kurtosis")
-# plt.xlabel("Attributes")
+plt.plot(range_n_components, values)
+plt.title("Avg Kurtosis by Number of Attributes for {} data set".format(fn))
+plt.ylabel("Avg. Kurtosis")
+plt.xlabel("Attributes")
 
-# plt.show()
+plt.show()

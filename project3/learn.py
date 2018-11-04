@@ -24,7 +24,7 @@ matplotlib.rcParams.update({'font.size': 22})
 
 data = pd.read_csv('data/{}-dataset.csv'.format(sys.argv[1])).values
 
-if False:
+if True:
   X = data[:, 1:4]
   enc = OneHotEncoder(handle_unknown='ignore')
   X = enc.fit_transform(X).toarray()
@@ -39,11 +39,11 @@ print(X.shape)
 y = data[:, -1]
 
 reducers = [
-  # { "label": "FeatCluster", "reducer": FeatCluster },
-  # { "label": "ICA", "reducer": FastICA },
-  # { "label": "PCA", "reducer": PCA },
-  # { "label": "Random", "reducer": SparseRandomProjection },
-  { "label": "Tree", "reducer": RandomTreesEmbedding },
+  { "label": "FeatCluster", "reducer": FeatCluster },
+  { "label": "ICA", "reducer": FastICA },
+  { "label": "PCA", "reducer": PCA },
+  { "label": "Random", "reducer": SparseRandomProjection },
+  # { "label": "Tree", "reducer": RandomTreesEmbedding },
 ]
 
 range_n_components = range(2, X.shape[1] + 1, 2)
@@ -55,8 +55,10 @@ values = []
 for r in reducers:
   for n_components in range_n_components:
     learner = MLPClassifier(solver='sgd', learning_rate='adaptive', max_iter=1000)
-    reducer = r["reducer"](n_estimators=n_components, max_depth=3)
+    reducer = r["reducer"](n_components=n_components)
     x = reducer.fit_transform(X)
+    # reducer = r["reducer"](n_estimators=n_components, max_depth=3)
+    # x = reducer.fit_transform(X).toarray()
     print(x.shape)
     score = cross_val_score(learner, x, y, cv=folds).mean()
     values.append(score)

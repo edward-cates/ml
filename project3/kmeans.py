@@ -35,17 +35,19 @@ if fn == 'bank':
   X = normalize(X, axis=0)
 
   range_n_clusters = range(2, 21, 1)
-  range_n_clusters = [15]
+  # range_n_clusters = [15]
+  range_n_components = [X.shape[1]]
 else:
   X = data[:, :-1]
   range_n_clusters = range(2, 11, 1)
-  range_n_clusters = [2]
+  # range_n_clusters = [2]
+  range_n_components = [X.shape[1]]
   print(X.shape)
 #endif
 
 y = data[:, -1]
 
-range_n_components = range(2, X.shape[1] + 1)
+# range_n_components = range(2, X.shape[1] + 1)
 
 values = []
 
@@ -58,6 +60,7 @@ for n_components in range_n_components:
     reducer = SparseRandomProjection(n_components=n_components)
     x = reducer.fit_transform(X)
     print(x.shape)
+    x = X
 
     # Create a subplot with 1 row and 2 columns
     fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -158,8 +161,8 @@ for n_components in range_n_components:
 
 x_label = "N Clusters"
 
-range_n_clusters = range_n_components
-x_label = "Attributes"
+# range_n_clusters = range_n_components
+# x_label = "Attributes"
 
 fig, (ax1, ax2) = plt.subplots(1, 2)
 
