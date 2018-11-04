@@ -4,6 +4,7 @@ from scipy.stats import kurtosis
 from sklearn.cluster import KMeans
 from sklearn.decomposition import FastICA
 from sklearn.decomposition import PCA
+from sklearn.feature_selection import mutual_info_classif
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import OneHotEncoder
@@ -60,6 +61,7 @@ for n_components in range_n_components:
     # reducer = SparseRandomProjection(n_components=n_components)
     X = reducer.fit_transform(Xo)
     print(kurtosis(X))
+    # print(mutual_info_classif(X, y))
 
     # Initialize the clusterer with n_clusters value and a random generator
     # seed of 10 for reproducibility.
