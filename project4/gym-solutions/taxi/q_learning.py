@@ -18,6 +18,8 @@ alpha = 0.85
 discount = 0.99
 episodes = 1000
 
+max_r, max_e = 0, 0
+
 # Episodes
 for episode in xrange(episodes):
     # Refresh state
@@ -41,8 +43,15 @@ for episode in xrange(episodes):
     rewards.append(t_reward)
     iterations.append(i)
 
+    if (t_reward > max_r):
+        max_r = t_reward
+        max_e = episode
+    #endif
+
 # Close environment
 env.close()
+
+print('alpha: {}, discount: {}, episodes: {}, max_e: {}, max_r: {}'.format(alpha, discount, episodes, max_e, max_r))
 
 # Plot results
 def chunk_list(l, n):

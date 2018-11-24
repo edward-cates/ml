@@ -1,6 +1,7 @@
 import gym
 import os
 import numpy as np
+import sys
 
 import matplotlib.pyplot as plt
 
@@ -17,6 +18,8 @@ iterations = []
 alpha = 0.75
 discount = 0.95
 episodes = 5000
+
+max_r, max_e = 0, 0
 
 # Episodes
 for episode in xrange(episodes):
@@ -41,15 +44,22 @@ for episode in xrange(episodes):
     rewards.append(t_reward)
     iterations.append(i)
 
+    if (t_reward > max_r):
+        max_r = t_reward
+        max_e = episode
+    #endif
+
 # Close environment
 env.close()
+
+print('alpha: {}, discount: {}, episodes: {}, max_e: {}, max_r: {}'.format(alpha, discount, episodes, max_e, max_r))
 
 # Plot results
 def chunk_list(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
 
-size = episodes / 50
+size = episodes / 25
 chunks = list(chunk_list(rewards, size))
 averages = [sum(chunk) / len(chunk) for chunk in chunks]
 
