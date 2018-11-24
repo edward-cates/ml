@@ -1,71 +1,17 @@
-Overview
+Code: https://github.com/edward-cates/ml/tree/master/project3
 
-  The base folder consists of 2 subfolders:
-    1. ABAGAIL - all the learning and optimization code provided by the course instructors.
-    2. project2 - all the console output logs, graphs, and python scripts used to organize the outputs.
+Simply run:
 
-  This documentation assumes familiarity with ABAGAIL since it was provided by the instructors. For ABAGAIL instructions, see https://github.com/pushkar/ABAGAIL
+`python kmeans.py <bank/eyes>` to run clustering using kmeans, including feature transformation
 
+`python emax.py <bank/eyes>` to run clustering using expectation maximization, including feature transformation
 
-Neural Network
+`python reduce.py <bank/eyes>` to run feature transformation alone
 
-  Poker Test was found at https://gist.github.com/mosdragon/53edf8e69fde531db69e
+`python learn.py <bank/eyes>` to train and test a neural network using the various feature transformation algorithms
 
-  And trains a neural network on the given data using backpropagation, randomized hill climbing, simmulated annealing, and a genetic algorithm. 
-
-  The data can be found in project2/data/ (*-dataset.csv)
-
-  After changing to the ABAGAIL directory and compiling using `ant`:
-
-  To perform hyperparameter search for each algorithm:
-    java -cp ABAGAIL.jar opt.test.PokerTest true
-
-  To try an increasing number of iterations for each algorithm:
-    ./iterations.sh
-
-  In general, the arguments for PokerTest are as follows:
-    PokerTest <shouldFindParams: boolean> <backpropIterations: int> <rhcIterations: int> <saIterations: int> <gaIterations: int>
+`python test.py <bank/eyes` to test a specific combination of parameters
 
 
-Optimization Problems
-
-  After changing to the ABAGAIL directory and compiling using `ant`:
-
-  Flip flop
-
-    To run and save output:
-      java -cp ABAGAIL.jar opt.test.FlipFlopTest > ../project2/output/part2/flipflop.log
-
-    To generate graphs:
-      From the project2 directory:
-        python3 flipflop.py
-
-      Graphs will be in:
-        project2/graphs/part2/
-
-  Knapsack
-
-    To run and save output:
-      java -cp ABAGAIL.jar opt.test.KnapsackTest > ../project2/output/part2/knapsack.log
-
-    To generate graphs:
-      From the project2 directory:
-        python3 knapsack.py
-
-      Graphs will be in:
-        project2/graphs/part2/
-
-  Cosine of Sine
-
-    To run and save output:
-      java -cp ABAGAIL.jar opt.test.CountOnesTest > ../project2/output/part2/sine.log
-
-    To generate graphs:
-      From the project2 directory:
-        python3 sine.py
-
-      Graphs will be in:
-        project2/graphs/part2/
-
-
-  Many of the other ABAGAIL tests have been modified to perform hyperparameter search and can be run the same way.
+Each script has multiple capabilities, each of which is accessed through a series of commenting and uncommenting
+(for instance, uncommenting whichever feature transformer you want to use).
