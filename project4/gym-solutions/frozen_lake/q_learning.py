@@ -3,7 +3,10 @@ import os
 import numpy as np
 import sys
 
+import matplotlib
 import matplotlib.pyplot as plt
+
+matplotlib.rcParams.update({'font.size': 22})
 
 # Environment initialization
 folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'q_learning')
@@ -15,11 +18,19 @@ rewards = []
 iterations = []
 
 # Parameters
-alpha = 0.75
-discount = 0.95
-episodes = 5000
+if len(sys.argv) == 1:
+    alpha = 0.75
+    discount = 0.95
+else:
+    alpha = float(sys.argv[1])
+    discount = float(sys.argv[2])
+#endif
+
+episodes = 3000
 
 max_r, max_e = 0, 0
+
+old_p = [0,3,0,3,0,0,0,0,3,1,0,0,0,2,1,0]
 
 # Episodes
 for episode in xrange(episodes):
@@ -36,9 +47,10 @@ for episode in xrange(episodes):
 
         current = state
         action = np.argmax(Q[current, :] + np.random.randn(1, env.action_space.n) * (1 / float(episode + 1)))
+        # action = old_p[current]
 
         state, reward, done, info = env.step(action)
-        t_reward += reward
+        t_reward += (reward * 1)
         Q[current, action] += alpha * (reward + discount * np.max(Q[state, :]) - Q[current, action])
 
     rewards.append(t_reward)
@@ -52,7 +64,18 @@ for episode in xrange(episodes):
 # Close environment
 env.close()
 
-print('alpha: {}, discount: {}, episodes: {}, max_e: {}, max_r: {}'.format(alpha, discount, episodes, max_e, max_r))
+policy = np.argmax(Q, axis=1)
+
+diff = 0
+for i in range(16):
+    if old_p[i] != policy[i]:
+        diff += 1
+    #endif
+#endfor
+
+ave = sum(rewards[-500:]) / 500
+
+print('alpha: {}, discount: {}, episodes: {}, diff: {}, max_e: {}, max_r: {}, ave: {}'.format(alpha, discount, episodes, diff, max_e, max_r, ave))
 
 # Plot results
 def chunk_list(l, n):
@@ -66,7 +89,8 @@ averages = [sum(chunk) / len(chunk) for chunk in chunks]
 plt.plot(range(0, len(rewards), size), averages)
 plt.xlabel('Episode')
 plt.ylabel('Average Reward')
-plt.show()
+plt.ylim([0, 1])
+# plt.show()
 
 # Push solution
 api_key = os.environ.get('GYM_API_KEY', False)

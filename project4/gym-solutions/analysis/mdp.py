@@ -98,7 +98,7 @@ def policy_iteration(problem, R=None, T=None, gamma=0.9, max_iterations=10**6, d
             break
 
     # Return optimal policy
-    return policy, i + 1
+    return policy, i + 1, Q
 
 def print_policy(policy, mapping=None, shape=(0,)):
     print np.array([mapping[action] for action in policy]).reshape(shape)
@@ -117,7 +117,7 @@ def run_discrete(environment_name, mapping, shape=None):
     print
 
     print '== Policy Iteration =='
-    policy, iters = policy_iteration(problem)
+    policy, iters, Q = policy_iteration(problem)
     print 'Iterations:', iters
     print
 
@@ -131,12 +131,13 @@ def run_discrete(environment_name, mapping, shape=None):
         print_policy(policy, mapping, shape)
         print
 
-    return policy
+    return policy, Q
 
 # FROZEN LAKE SMALL
 mapping = {0: "L", 1: "D", 2: "R", 3: "U"}
 shape = (4, 4)
-run_discrete('FrozenLake-v0', mapping, shape)
+policy, Q = run_discrete('FrozenLake-v0', mapping, shape)
+print(policy)
 
 # FROZEN LAKE LARGE
 shape = (8, 8)
@@ -144,4 +145,5 @@ run_discrete('FrozenLake8x8-v0', mapping ,shape)
 
 # TAXI
 mapping = {0: "S", 1: "N", 2: "E", 3: "W", 4: "P", 5: "D"}
-run_discrete('Taxi-v2', mapping)
+policy, Q = run_discrete('Taxi-v2', mapping)
+print(policy)
