@@ -47,10 +47,10 @@ for episode in xrange(episodes):
 
         current = state
         action = np.argmax(Q[current, :] + np.random.randn(1, env.action_space.n) * (1 / float(episode + 1)))
-        # action = old_p[current]
+        action = old_p[current]
 
         state, reward, done, info = env.step(action)
-        t_reward += (reward * 1)
+        t_reward += (reward * 10)
         Q[current, action] += alpha * (reward + discount * np.max(Q[state, :]) - Q[current, action])
 
     rewards.append(t_reward)
@@ -90,7 +90,9 @@ plt.plot(range(0, len(rewards), size), averages)
 plt.xlabel('Episode')
 plt.ylabel('Average Reward')
 plt.ylim([0, 1])
-# plt.show()
+
+if len(sys.argv) == 1:
+    plt.show()
 
 # Push solution
 api_key = os.environ.get('GYM_API_KEY', False)

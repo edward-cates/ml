@@ -90,9 +90,11 @@ averages = [sum(chunk) / len(chunk) for chunk in chunks]
 plt.plot(range(0, len(rewards), size), averages)
 plt.xlabel('Episode')
 plt.ylabel('Average Reward')
-# plt.ylim([5, 10])
+plt.ylim([5, 10])
 # plt.ylim([0, 20])
-plt.show()
+
+if len(sys.argv) == 1:
+    plt.show()
 
 # Push solution
 # TODO: re-enable when OpenAI Gym accepts v2
