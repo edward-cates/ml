@@ -16,5 +16,3 @@ To run with different hyperparameters:
 ./frozen_lake/run.sh
 ./taxi/run.sh
 ```
-
-
